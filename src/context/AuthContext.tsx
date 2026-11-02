@@ -2,12 +2,20 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authClient, AuthUser, getCurrentSessionUser } from '../services/authClient';
 import toast from 'react-hot-toast';
 
+interface SocialProfileInput {
+  name?: string;
+  email?: string;
+}
+
 interface AuthContextType {
   user: AuthUser | null;
   loading: boolean;
   signInWithEmail: (email: string, password: string) => Promise<boolean>;
   signUpWithEmail: (name: string, email: string, password: string) => Promise<boolean>;
-  signInWithSocial: (provider: 'google' | 'github') => Promise<boolean>;
+  signInWithSocial: (
+    provider: 'google' | 'github',
+    profile?: SocialProfileInput
+  ) => Promise<boolean>;
   updateUserInfo: (name: string) => Promise<boolean>;
   signOut: () => Promise<void>;
 }
@@ -58,17 +66,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const signInWithSocial = async (provider: 'google' | 'github'): Promise<boolean> => {
+  const signInWithSocial = async (
+    provider: 'google' | 'github',
+    profile?: SocialProfileInput
+  ): Promise<boolean> => {
     setLoading(true);
     try {
-      const { data, error } = await authClient.signIn.social({ provider });
+      const { data, error } = await authClient.signIn.social({
+        provider,
+        name: profile?.name,
+        email: profile?.email,
+      });
       if (error || !data) {
         toast.error(error?.message || 'সোশ্যাল লগইন ব্যর্থ হয়েছে।');
         return false;
       }
       setUser(data);
       const label = provider === 'google' ? 'Google' : 'GitHub';
-      toast.success(`${label} দিয়ে সফলভাবে সাইন ইন হয়েছে!`);
+      toast.success(`স্বাগতম, ${data.name}! ${label} দিয়ে সাইন ইন সম্পন্ন হয়েছে।`);
       return true;
     } finally {
       setLoading(false);

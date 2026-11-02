@@ -21,9 +21,9 @@ const SESSION_STORAGE_KEY = 'bazardor_better_auth_session_v1';
 
 const DEFAULT_DEMO_USERS: StoredAccount[] = [
   {
-    id: 'usr_rezwan_01',
-    name: 'Rezwan Ahmed',
-    email: 'rezwanahmed@gmail.com',
+    id: 'usr_alamin_01',
+    name: 'Al Amin',
+    email: 'alaminbd7598@gmail.com',
     password: 'password123',
     provider: 'credential',
     createdAt: '2026-10-01T10:00:00.000Z',
@@ -58,6 +58,10 @@ function loadUsers(): StoredAccount[] {
   } catch {
     return [...DEFAULT_DEMO_USERS];
   }
+}
+
+export function getAvailableAccounts(): AuthUser[] {
+  return loadUsers().map(toPublicUser);
 }
 
 function saveUsers(users: StoredAccount[]): void {
@@ -234,15 +238,29 @@ export const authClient = {
 
     social: async ({
       provider,
+      name,
+      email,
     }: {
       provider: 'google' | 'github';
       callbackURL?: string;
+      name?: string;
+      email?: string;
     }): Promise<AuthResponse<AuthUser>> => {
       const users = loadUsers();
-      const socialEmail =
-        provider === 'google' ? 'rezwanahmed@gmail.com' : 'rezwan.dev@github.com';
+      const socialEmail = (
+        email?.trim() ||
+        (provider === 'google' ? 'alaminbd7598@gmail.com' : 'alaminbd7598@github.com')
+      ).toLowerCase();
       const socialName =
-        provider === 'google' ? 'Rezwan Ahmed' : 'Rezwan Ahmed (GitHub)';
+        name?.trim() ||
+        (provider === 'google' ? 'Al Amin' : 'Al Amin (GitHub)');
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(socialEmail)) {
+        return {
+          data: null,
+          error: { message: 'অনুগ্রহ করে একটি সঠিক ইমেইল ঠিকানা দিন।', code: 'INVALID_EMAIL' },
+        };
+      }
 
       let account = users.find((u) => u.email.toLowerCase() === socialEmail);
       if (!account) {
@@ -254,6 +272,10 @@ export const authClient = {
           createdAt: new Date().toISOString(),
         };
         users.push(account);
+        saveUsers(users);
+      } else if (name?.trim()) {
+        account.name = socialName;
+        account.provider = provider;
         saveUsers(users);
       }
 

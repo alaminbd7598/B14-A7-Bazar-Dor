@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { SocialAuthModal } from '../components/SocialAuthModal';
 import toast from 'react-hot-toast';
 
 export const SignInPage: React.FC = () => {
@@ -12,6 +13,7 @@ export const SignInPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formError, setFormError] = useState<string | null>(null);
+  const [socialProvider, setSocialProvider] = useState<'google' | 'github' | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,9 +40,13 @@ export const SignInPage: React.FC = () => {
     }
   };
 
-  const handleSocialLogin = async (provider: 'google' | 'github') => {
+  const handleSocialSelect = async (
+    provider: 'google' | 'github',
+    profile: { name: string; email: string }
+  ) => {
+    setSocialProvider(null);
     setFormError(null);
-    const ok = await signInWithSocial(provider);
+    const ok = await signInWithSocial(provider, profile);
     if (ok) {
       navigate(redirectTo, { replace: true });
     }
@@ -126,7 +132,7 @@ export const SignInPage: React.FC = () => {
             <button
               type="button"
               disabled={loading}
-              onClick={() => handleSocialLogin('google')}
+              onClick={() => setSocialProvider('google')}
               className="flex items-center justify-center gap-2 py-2.5 px-3 bg-white hover:bg-[#ecfdf5] border border-[#c6dbd0] rounded-xl text-xs sm:text-sm font-bold text-[#0f1f17] shadow-2xs transition-colors cursor-pointer whitespace-nowrap"
             >
               <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
@@ -153,7 +159,7 @@ export const SignInPage: React.FC = () => {
             <button
               type="button"
               disabled={loading}
-              onClick={() => handleSocialLogin('github')}
+              onClick={() => setSocialProvider('github')}
               className="flex items-center justify-center gap-2 py-2.5 px-3 bg-white hover:bg-[#ecfdf5] border border-[#c6dbd0] rounded-xl text-xs sm:text-sm font-bold text-[#0f1f17] shadow-2xs transition-colors cursor-pointer whitespace-nowrap"
             >
               <svg
@@ -187,6 +193,12 @@ export const SignInPage: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      <SocialAuthModal
+        provider={socialProvider}
+        onClose={() => setSocialProvider(null)}
+        onSelectAccount={handleSocialSelect}
+      />
     </main>
   );
 };
