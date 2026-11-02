@@ -242,3 +242,13 @@ export function getBanglaDateString(date?: Date): string {
     return 'মঙ্গলবার, ৬ অক্টোবর, ২০২৬';
   }
 }
+
+/**
+ * Calculates the percentage spread between minimum and maximum market prices.
+ */
+export function getMarketPriceSpread(minPrice: number, maxPrice: number): string {
+  if (minPrice <= 0 || maxPrice <= minPrice) return '০.০%';
+  const spreadPct = ((maxPrice - minPrice) / minPrice) * 100;
+  return `${toBanglaDigits(spreadPct.toFixed(1))}%`;
+}
+
