@@ -81,3 +81,9 @@ export async function fetchProductBySlug(slugOrId: string): Promise<Product | nu
   );
   return found || null;
 }
+
+export function clearApiCache(): void {
+  cachedProducts = null;
+  cachedCategories = null;
+}
+
