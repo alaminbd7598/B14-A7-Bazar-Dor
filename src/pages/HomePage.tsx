@@ -7,6 +7,7 @@ import {
   sortProducts,
   SortOption,
   toBanglaDigits,
+  getBanglaDateString,
 } from '../utils/bazarLogic';
 import { ProductCard, ProductCardSkeleton } from '../components/ProductCard';
 import { SortDropdown } from '../components/SortDropdown';
@@ -26,6 +27,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<SortOption>('default');
+  const todayBanglaDate = getBanglaDateString();
 
   const topRisers = useMemo(() => getTopRisers(products, 6), [products]);
   const topFallers = useMemo(() => getTopFallers(products, 6), [products]);
@@ -58,7 +60,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* Left Column: Eyebrow, Heading, Subtitle, Primary CTA */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#065f46] text-white shadow-xs">
-              <span>📅 মঙ্গলবার, ৬ অক্টোবর, ২০২৬</span>
+              <span>📅 {todayBanglaDate}</span>
               <span aria-hidden="true">·</span>
               <span className="text-emerald-200">লাইভ বাজার দর</span>
             </div>

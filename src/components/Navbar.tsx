@@ -5,6 +5,7 @@ import {
   toBanglaDigits,
   formatShortUnitBn,
   formatChangeBadge,
+  getBanglaDateString,
 } from '../utils/bazarLogic';
 import { useAuth } from '../context/AuthContext';
 
@@ -60,6 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const firstName = user?.name ? user.name.split(' ')[0] : '';
   const userInitial = user?.name ? user.name.charAt(0).toUpperCase() : 'U';
+  const todayBanglaDate = getBanglaDateString();
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#d5e4da] shadow-xs">
@@ -80,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               বাজার দর
             </span>
             <span className="text-[11px] sm:text-xs font-medium text-[#4b6356] leading-tight whitespace-nowrap">
-              মঙ্গলবার, ৬ অক্টোবর, ২০২৬
+              {todayBanglaDate}
             </span>
           </div>
         </Link>

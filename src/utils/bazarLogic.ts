@@ -224,23 +224,40 @@ export function calculateMarketSummary(product: Product): ProductMarketSummary {
   };
 }
 
+const BN_WEEKDAYS = [
+  'রবিবার',
+  'সোমবার',
+  'মঙ্গলবার',
+  'বুধবার',
+  'বৃহস্পতিবার',
+  'শুক্রবার',
+  'শনিবার',
+];
+
+const BN_MONTHS = [
+  'জানুয়ারি',
+  'ফেব্রুয়ারি',
+  'মার্চ',
+  'এপ্রিল',
+  'মে',
+  'জুন',
+  'জুলাই',
+  'আগস্ট',
+  'সেপ্টেম্বর',
+  'অক্টোবর',
+  'নভেম্বর',
+  'ডিসেম্বর',
+];
+
 /**
- * Formats a date in Bengali (e.g., "মঙ্গলবার, ৬ অক্টোবর, ২০২৬")
+ * Formats the current (or provided) date in Bengali (e.g., "সোমবার, ২ নভেম্বর, ২০২৬")
  */
-export function getBanglaDateString(date?: Date): string {
-  if (!date) {
-    return 'মঙ্গলবার, ৬ অক্টোবর, ২০২৬';
-  }
-  try {
-    return new Intl.DateTimeFormat('bn-BD', {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    }).format(date);
-  } catch {
-    return 'মঙ্গলবার, ৬ অক্টোবর, ২০২৬';
-  }
+export function getBanglaDateString(date: Date = new Date()): string {
+  const weekday = BN_WEEKDAYS[date.getDay()] ?? '';
+  const day = toBanglaDigits(date.getDate());
+  const month = BN_MONTHS[date.getMonth()] ?? '';
+  const year = toBanglaDigits(date.getFullYear());
+  return `${weekday}, ${day} ${month}, ${year}`;
 }
 
 /**
