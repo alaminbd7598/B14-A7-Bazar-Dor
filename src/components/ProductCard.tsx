@@ -20,6 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Link
       to={`/product/${product.slug}`}
+      title={`${product.nameBn} — ${formatPriceBn(product.today)}`}
       className="group block card-3d rounded-2xl p-4 sm:p-5 focus:outline-none focus:ring-2 focus:ring-[#059669]"
     >
       {/* Top Row: 3D Sculpted Emoji Box + Product Name + Unit & Category */}
