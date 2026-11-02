@@ -59,17 +59,21 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
           {/* Left Column: Eyebrow, Heading, Subtitle, Primary CTA */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#065f46] text-white shadow-xs">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-bold bg-[#064e3b] text-white border border-[#059669] shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#34d399] animate-ping" />
               <span>📅 {todayBanglaDate}</span>
               <span aria-hidden="true">·</span>
               <span className="text-emerald-200">লাইভ বাজার দর</span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-[#0f1f17] tracking-tight leading-[1.2]">
-              আজকের বাজারের দাম এক নজরে
+            <h1 className="text-2xl sm:text-4xl lg:text-[44px] font-extrabold text-[#0f1f17] tracking-tight leading-[1.18]">
+              আজকের বাজারের দাম{' '}
+              <span className="text-[#047857] underline decoration-[#10b981]/40 decoration-wavy underline-offset-8">
+                এক নজরে
+              </span>
             </h1>
 
-            <p className="text-sm sm:text-base text-[#3b5246] leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base text-[#2e473b] font-medium leading-relaxed max-w-xl">
               চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক
               বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
             </p>
@@ -83,282 +87,271 @@ export const HomePage: React.FC<HomePageProps> = ({
               </a>
               <Link
                 to="/compare"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-bold text-[#0f1f17] bg-white hover:bg-[#ecfdf5] border border-[#d5e4da] hover:border-[#059669] rounded-xl shadow-2xs transition-all whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-bold text-[#0f1f17] card-3d rounded-xl whitespace-nowrap"
               >
                 <span aria-hidden="true">⚖️</span>
                 <span>বাজার তুলনা</span>
               </Link>
             </div>
 
-            {/* Key Market Stats Cards */}
+            {/* Key Market Stats 3D Plaques */}
             <div className="pt-4 grid grid-cols-3 gap-3 sm:gap-4 max-w-lg">
-              <div className="bg-white/90 border border-[#d5e4da] rounded-2xl p-3 sm:p-3.5 shadow-2xs">
-                <span className="block text-[11px] font-semibold text-[#4b6356]">
+              <div className="card-3d rounded-2xl p-3 sm:p-3.5">
+                <span className="block text-[11px] font-bold text-[#4b6356]">
                   পণ্য
                 </span>
-                <span className="text-xl sm:text-2xl font-bold text-[#047857] tabular-nums">
+                <span className="text-xl sm:text-2xl font-extrabold text-[#047857] tabular-nums">
                   {toBanglaDigits(products.length || 33)}
                 </span>
-                <span className="block text-[11px] text-[#4b6356]">
+                <span className="block text-[11px] font-medium text-[#4b6356]">
                   টি নিত্যদিনের পণ্য
                 </span>
               </div>
-              <div className="bg-white/90 border border-[#d5e4da] rounded-2xl p-3 sm:p-3.5 shadow-2xs">
-                <span className="block text-[11px] font-semibold text-[#4b6356]">
+              <div className="card-3d rounded-2xl p-3 sm:p-3.5">
+                <span className="block text-[11px] font-bold text-[#4b6356]">
                   বাজার
                 </span>
-                <span className="text-xl sm:text-2xl font-bold text-[#047857] tabular-nums">
+                <span className="text-xl sm:text-2xl font-extrabold text-[#047857] tabular-nums">
                   ১২
                 </span>
-                <span className="block text-[11px] text-[#4b6356]">
+                <span className="block text-[11px] font-medium text-[#4b6356]">
                   টি বাজার অন্তর্ভুক্ত
                 </span>
               </div>
-              <div className="bg-white/90 border border-[#d5e4da] rounded-2xl p-3 sm:p-3.5 shadow-2xs">
-                <span className="block text-[11px] font-semibold text-[#4b6356]">
+              <div className="card-3d rounded-2xl p-3 sm:p-3.5">
+                <span className="block text-[11px] font-bold text-[#4b6356]">
                   বিভাগ
                 </span>
-                <span className="text-xl sm:text-2xl font-bold text-[#047857] tabular-nums">
+                <span className="text-xl sm:text-2xl font-extrabold text-[#047857] tabular-nums">
                   ৬
                 </span>
-                <span className="block text-[11px] text-[#4b6356]">
+                <span className="block text-[11px] font-medium text-[#4b6356]">
                   টি বিভাগের তথ্য
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: 3D Floating Hero Showcase */}
-          <div className="lg:col-span-5 flex items-center justify-center">
-            <div className="relative w-full max-w-[350px]">
-              <div className="card-3d rounded-3xl p-6 flex items-center justify-center relative animate-float">
-                <img
-                  src="/bazar-hero.png"
-                  alt="বাজারের নিত্যপ্রয়োজনীয় পণ্যের ঝুড়ি"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-auto max-h-[250px] object-contain drop-shadow-md"
-                />
-                {/* Floating 3D Callout Badge Top-Right */}
-                <div className="hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-xs border border-[#a7f3d0] rounded-2xl px-3 py-2 shadow-md absolute -top-3 -right-3">
-                  <span className="text-lg" aria-hidden="true">
-                    🥔
-                  </span>
-                  <div className="text-left">
-                    <span className="block text-[11px] font-bold text-[#0f1f17] leading-none">
-                      আলু ৩০৳/কেজি
-                    </span>
-                    <span className="text-[10px] font-bold text-[#047857]">
-                      ▼ ৬.২% কমেছে
-                    </span>
-                  </div>
-                </div>
-                {/* Floating 3D Callout Badge Bottom-Left */}
-                <div className="hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-xs border border-[#d5e4da] rounded-2xl px-3 py-2 shadow-md absolute -bottom-3 -left-3">
-                  <span className="text-lg" aria-hidden="true">
-                    🍚
-                  </span>
-                  <div className="text-left">
-                    <span className="block text-[11px] font-bold text-[#0f1f17] leading-none">
-                      মিনিকেট চাল ৯৯৳
-                    </span>
-                    <span className="text-[10px] font-bold text-[#047857]">
-                      ▼ ২.৯% সাশ্রয়ী
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Section A — “আজ দাম বেড়েছে ▲” (Top 6 Risers) */}
-      <section aria-labelledby="section-risers-heading" className="space-y-4">
-        <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#dce6df]">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-center text-[#047857]">
-              <TrendingUp className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <h2
-              id="section-risers-heading"
-              className="text-lg sm:text-xl font-bold text-[#0f1f17] flex items-center gap-1.5"
-            >
-              <span className="text-[#047857]" aria-hidden="true">
-                ▲
-              </span>
-              <span>আজ দাম বেড়েছে</span>
-            </h2>
-          </div>
-          <span className="text-xs font-medium text-[#4b6356]">
-            শীর্ষ ৬টি পণ্য
-          </span>
-        </div>
-
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <ProductCardSkeleton key={i} />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {topRisers.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* 3. Section B — “আজ দাম কমেছে ▼” (Top 6 Fallers) */}
-      <section aria-labelledby="section-fallers-heading" className="space-y-4">
-        <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#dce6df]">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#fef2f2] border border-[#fecaca] flex items-center justify-center text-[#dc2626]">
-              <TrendingDown className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <h2
-              id="section-fallers-heading"
-              className="text-lg sm:text-xl font-bold text-[#0f1f17] flex items-center gap-1.5"
-            >
-              <span className="text-[#dc2626]" aria-hidden="true">
-                ▼
-              </span>
-              <span>আজ দাম কমেছে</span>
-            </h2>
-          </div>
-          <span className="text-xs font-medium text-[#4b6356]">
-            শীর্ষ ৬টি পণ্য
-          </span>
-        </div>
-
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <ProductCardSkeleton key={i} />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {topFallers.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* 4. Section C — “সব পণ্য” */}
-      <section
-        id="সব-পণ্য"
-        aria-labelledby="section-all-products-heading"
-        className="space-y-5 scroll-mt-36"
-      >
-        <div className="card-3d rounded-2xl p-4 sm:p-6 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl icon-well-3d flex items-center justify-center text-[#047857]">
-                <Layers className="w-5 h-5" aria-hidden="true" />
-              </div>
-              <div>
-                <h2
-                  id="section-all-products-heading"
-                  className="text-xl sm:text-2xl font-bold text-[#0f1f17]"
-                >
-                  সব পণ্য
-                </h2>
-                <p className="text-xs sm:text-sm font-medium text-[#4b6356]">
-                  মোট {toBanglaDigits(filteredAndSortedProducts.length)}টি পণ্য দেখানো হচ্ছে
-                </p>
-              </div>
-            </div>
-
-            {/* Search & Sort Controls */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="relative flex-1 sm:flex-initial min-w-[210px]">
-                <Search
-                  className="w-4 h-4 text-[#4b6356] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
-                  aria-hidden="true"
-                />
-                <input
-                  type="search"
-                  aria-label="পণ্যের নাম লিখুন"
-                  placeholder="পণ্যের নাম লিখুন…"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-[#f8fbf9] border border-[#d5e4da] focus:border-[#059669] rounded-xl pl-9 pr-8 py-2 text-xs sm:text-sm text-[#0f1f17] placeholder:text-[#4b6356]/70 focus:outline-none focus:ring-2 focus:ring-[#059669]/20"
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    aria-label="সার্চ মুছুন"
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#4b6356] hover:text-[#0f1f17] cursor-pointer"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
-
-              <SortDropdown
-                id="home-sort-select"
-                value={sortBy}
-                onChange={setSortBy}
+          {/* Right Column: 3D Floating Market Basket Showcase */}
+          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
+            <div className="relative w-full max-w-[360px] sm:max-w-[400px] flex items-center justify-center">
+              {/* Glowing 3D Pedestal Ring */}
+              <div
+                aria-hidden="true"
+                className="absolute w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-gradient-to-tr from-[#10b981]/25 via-[#34d399]/15 to-transparent blur-xl"
               />
+
+              {/* Floating 3D Callout Top-Left */}
+              <div className="hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl card-3d absolute -top-3 -left-3 z-20">
+                <span className="w-8 h-8 rounded-xl icon-well-3d flex items-center justify-center text-base">
+                  🥔
+                </span>
+                <div className="leading-tight">
+                  <span className="block text-[11px] font-extrabold text-[#0f1f17]">
+                    আলু · ৩০৳/কেজি
+                  </span>
+                  <span className="text-[10px] font-bold text-[#047857]">
+                    ▼ ৬.৩% আজ সস্তা
+                  </span>
+                </div>
+              </div>
+
+              <img
+                src="/bazar-hero.png"
+                alt="নিত্যপ্রয়োজনীয় বাজারের পণ্যের ঝুড়ি"
+                className="relative z-10 w-full h-auto object-contain max-h-[260px] sm:max-h-[300px] drop-shadow-xl animate-float"
+              />
+
+              {/* Floating 3D Callout Bottom-Right */}
+              <div className="hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl card-3d absolute -bottom-2 -right-2 z-20">
+                <span className="w-8 h-8 rounded-xl icon-well-3d flex items-center justify-center text-base">
+                  🌾
+                </span>
+                <div className="leading-tight">
+                  <span className="block text-[11px] font-extrabold text-[#0f1f17]">
+                    মিনিকেট চাল · ৯৯৳
+                  </span>
+                  <span className="text-[10px] font-bold text-[#047857]">
+                    ১২টি বাজার যাচাইকৃত
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Price Increased Today ("আজ দাম বেড়েছে") */}
+      <section aria-labelledby="price-up-heading" className="space-y-5">
+        <div className="hero-surface-3d rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-3">
+            <span className="w-10 h-10 rounded-xl bg-[#fff1f2] border border-[#fecdd3] text-[#e11d48] flex items-center justify-center shadow-2xs shrink-0">
+              <TrendingUp className="w-5 h-5" />
+            </span>
+            <div>
+              <h2
+                id="price-up-heading"
+                className="text-xl sm:text-2xl font-extrabold text-[#0f1f17]"
+              >
+                আজ দাম বেড়েছে
+              </h2>
+              <p className="text-xs sm:text-sm font-medium text-[#4b6356]">
+                গতকালের তুলনায় যেসব পণ্যের দর সবচেয়ে বেশি বেড়েছে
+              </p>
+            </div>
+          </div>
+          <span className="self-start sm:self-center px-3 py-1 rounded-full bg-[#fff1f2] border border-[#fecdd3] text-xs font-extrabold text-[#e11d48]">
+            ▲ সর্বোচ্চ ৬টি পণ্য
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {loading
+            ? Array.from({ length: 6 }).map((_, i) => (
+                <ProductCardSkeleton key={`up-skel-${i}`} />
+              ))
+            : topRisers.map((product) => (
+                <ProductCard key={`up-${product.id}`} product={product} />
+              ))}
+        </div>
+      </section>
+
+      {/* 3. Price Decreased Today ("আজ দাম কমেছে") */}
+      <section aria-labelledby="price-down-heading" className="space-y-5">
+        <div className="hero-surface-3d rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-3">
+            <span className="w-10 h-10 rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] text-[#047857] flex items-center justify-center shadow-2xs shrink-0">
+              <TrendingDown className="w-5 h-5" />
+            </span>
+            <div>
+              <h2
+                id="price-down-heading"
+                className="text-xl sm:text-2xl font-extrabold text-[#0f1f17]"
+              >
+                আজ দাম কমেছে
+              </h2>
+              <p className="text-xs sm:text-sm font-medium text-[#4b6356]">
+                গতকালের তুলনায় যেসব পণ্যের দর সবচেয়ে বেশি কমেছে
+              </p>
+            </div>
+          </div>
+          <span className="self-start sm:self-center px-3 py-1 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-xs font-extrabold text-[#047857]">
+            ▼ সাশ্রয়ী ৬টি পণ্য
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {loading
+            ? Array.from({ length: 6 }).map((_, i) => (
+                <ProductCardSkeleton key={`down-skel-${i}`} />
+              ))
+            : topFallers.map((product) => (
+                <ProductCard key={`down-${product.id}`} product={product} />
+              ))}
+        </div>
+      </section>
+
+      {/* 4. All Products ("সব পণ্য") with Search, Category Filter & Sort (Challenge C1) */}
+      <section id="সব-পণ্য" aria-labelledby="all-products-heading" className="space-y-5 scroll-mt-32">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="w-10 h-10 rounded-xl icon-well-3d text-[#047857] flex items-center justify-center shrink-0">
+              <Layers className="w-5 h-5" />
+            </span>
+            <div>
+              <h2
+                id="all-products-heading"
+                className="text-xl sm:text-2xl font-extrabold text-[#0f1f17]"
+              >
+                সব পণ্য
+              </h2>
+              <p className="text-xs sm:text-sm font-medium text-[#4b6356]">
+                বিভাগ বেছে নিন বা দাম অনুযায়ী সাজান ({toBanglaDigits(filteredAndSortedProducts.length)}টি পণ্য)
+              </p>
             </div>
           </div>
 
-          {/* Category Filter Tabs inside "সব পণ্য" */}
+          {/* Sort Dropdown (Challenge C1) */}
+          <SortDropdown
+            id="home-sort-select"
+            value={sortBy}
+            onChange={setSortBy}
+          />
+        </div>
+
+        {/* Category Filter Bar + Quick Search */}
+        <div className="card-3d rounded-2xl p-3.5 sm:p-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
           <div
-            className="flex items-center gap-2 overflow-x-auto pt-2 border-t border-[#e8f0eb] no-scrollbar"
             role="tablist"
-            aria-label="বিভাগ অনুযায়ী ফিল্টার"
+            aria-label="পণ্য বিভাগ ফিল্টার"
+            className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 no-scrollbar"
           >
             <button
               type="button"
               role="tab"
               aria-selected={selectedCategory === 'all'}
               onClick={() => setSelectedCategory('all')}
-              className={`px-4 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${
                 selectedCategory === 'all'
                   ? 'btn-3d-primary text-white'
-                  : 'bg-[#f3f7f4] text-[#2e473b] hover:bg-[#e3efe7]'
+                  : 'bg-[#f3f7f4] text-[#0f1f17] hover:bg-[#ecfdf5] hover:text-[#047857]'
               }`}
             >
               সব ({toBanglaDigits(products.length)})
             </button>
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                role="tab"
-                aria-selected={selectedCategory === cat.slug}
-                onClick={() => setSelectedCategory(cat.slug)}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap shrink-0 cursor-pointer ${
-                  selectedCategory === cat.slug
-                    ? 'btn-3d-primary text-white'
-                    : 'bg-[#f3f7f4] text-[#2e473b] hover:bg-[#e3efe7]'
-                }`}
-              >
-                <span aria-hidden="true">{cat.icon}</span>
-                <span>{cat.nameBn}</span>
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat.slug;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => setSelectedCategory(cat.slug)}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${
+                    isSelected
+                      ? 'btn-3d-primary text-white'
+                      : 'bg-[#f3f7f4] text-[#0f1f17] hover:bg-[#ecfdf5] hover:text-[#047857]'
+                  }`}
+                >
+                  <span aria-hidden="true">{cat.icon}</span>
+                  <span>{cat.nameBn}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Search Box */}
+          <div className="relative min-w-[220px] sm:min-w-[250px]">
+            <Search
+              className="w-4 h-4 text-[#4b6356] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+              aria-hidden="true"
+            />
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="পণ্য খুঁজুন (যেমন: চাল, আলু)…"
+              aria-label="পণ্য খুঁজুন"
+              className="w-full bg-[#f3f7f4] focus:bg-white border border-[#d5e4da] focus:border-[#059669] rounded-xl pl-9 pr-3.5 py-2 text-xs sm:text-sm font-medium text-[#0f1f17] placeholder:text-[#4b6356]/70 focus:outline-none focus:ring-2 focus:ring-[#059669]/20 transition-all"
+            />
           </div>
         </div>
 
-        {/* Products Grid */}
+        {/* All Products Grid */}
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {Array.from({ length: 9 }).map((_, i) => (
-              <ProductCardSkeleton key={i} />
+              <ProductCardSkeleton key={`all-skel-${i}`} />
             ))}
           </div>
         ) : filteredAndSortedProducts.length === 0 ? (
           <div className="card-3d rounded-2xl p-10 text-center space-y-3">
             <p className="text-base font-bold text-[#0f1f17]">
-              কোনো পণ্য খুঁজে পাওয়া যায়নি।
+              কোনো পণ্য খুঁজে পাওয়া যায়নি
             </p>
             <p className="text-xs sm:text-sm text-[#4b6356]">
-              অন্য কোনো নাম বা বিভাগ নির্বাচন করে আবার চেষ্টা করুন।
+              অনুগ্রহ করে অন্য কোনো নাম বা বিভাগ নির্বাচন করে আবার চেষ্টা করুন।
             </p>
             <button
               type="button"
@@ -367,15 +360,15 @@ export const HomePage: React.FC<HomePageProps> = ({
                 setSearchQuery('');
                 setSortBy('default');
               }}
-              className="px-5 py-2.5 text-xs sm:text-sm font-bold text-white btn-3d-primary rounded-xl cursor-pointer"
+              className="mt-2 inline-flex items-center px-4 py-2 text-xs sm:text-sm font-bold text-white btn-3d-primary rounded-xl transition-all cursor-pointer"
             >
-              ফিল্টার রিসেট করুন
+              সব ফিল্টার মুছুন
             </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {filteredAndSortedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={`all-${product.id}`} product={product} />
             ))}
           </div>
         )}
